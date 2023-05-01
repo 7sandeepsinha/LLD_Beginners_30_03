@@ -1,0 +1,8 @@
+Can we create objects in Java without constructor ?
+Ans - No, we always need a constructor. Even if we dont add a constructor, Java will.
+
+Can we create objects in Java without defining constructor ?
+Ans - Yes, if we dont define any constructor, java will add default constructor.
+
+Do we have access modifiers for constructors ?
+Ans - Yes, all access modifiers are applicable to constructors.
