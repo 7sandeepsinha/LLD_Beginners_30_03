@@ -1,7 +1,7 @@
 package inheritanceAndPolymorphism;
 
 public class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args) { //psvm(String[])
         Student s = new Student();
         s.id = 1;
         s.name = "Ananth";
@@ -67,6 +67,22 @@ public class Client {
         } else {
             validationService.validateLectureAttendance(new TA());
         }
+
+        C objC = new C(1,2,3);
+        System.out.println(objC.x);
+        System.out.println(objC.y);
+        System.out.println(objC.z);
+        objC.helloC();
+
+        //A -> x(cons of A), B -> y(cons of B), C -> z(cons of C)
+        //super is always for immediate parent.
+        // super from C = B
+        // super from B = A
+
+        Product p = new Product(1,"Iphone",100,100000);
     }
 }
-//start the lecture 7:05 AM
+// Why is main a static method ?
+// If it was not a static method, then we would have needed an object to call it.
+// Main is the starting of java, so we will not have any object in the start.
+// So invoke the main function, we need to make it static, so that we can call ClassName.main();
