@@ -1,0 +1,10 @@
+Create task -> Runnable or Callable
+task does not return anything : Runnable
+task has to return something : Callable
+
+ExecutorService -> maintains the threadpool and
+execution of tasks, we dont create any task
+inside executorService.
+
+execute a callable task -> executor.submit(task)
+execute a runnable task -> executor.execute(task)
