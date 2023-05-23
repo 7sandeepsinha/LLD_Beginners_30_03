@@ -16,7 +16,6 @@ public class Client {
 
         Future<Long> futureSum1 = executor.submit(adder1);
         Future<Long> futureSum2 = executor.submit(adder2);
-
         //get the actual values from the futures
         long s1 = futureSum1.get();
         long s2 = futureSum2.get();
