@@ -9,7 +9,7 @@ public class SingletonMultiThreaded {
 
     public static SingletonMultiThreaded getInstance(){
         if(instance == null){
-            synchronized (SingletonMultiThreaded.class) {
+            synchronized (SingletonMultiThreaded.class) { // take the lock using class
                 if (instance == null) {
                     instance = new SingletonMultiThreaded();
                 }
