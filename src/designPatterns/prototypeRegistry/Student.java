@@ -20,6 +20,9 @@ public class Student {
         return student;
     }
 
+    public Student(String batchName) {
+        this.batchName = batchName;
+    }
     public Student() {
     }
 

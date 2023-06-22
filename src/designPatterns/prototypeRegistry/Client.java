@@ -29,5 +29,9 @@ public class Client {
         ananthApr23.setName("Ananth");
         ananthApr23.setEmail("ananth@email.com");
         ananthApr23.setPhoneNumber("5678");
+
+        Student st = new IntelligentStudent("Jan23", 100);
+        Student stCopy = st.copy();
+
     }
 }
