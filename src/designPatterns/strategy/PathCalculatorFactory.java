@@ -6,7 +6,6 @@ public class PathCalculatorFactory {
             case CAR -> CarPathCalculatorStrategy.getInstance();
             case BIKE -> BikePathCalculatorStrategy.getInstance();
             case WALK -> WalkPathCalculatorStrategy.getInstance();
-            default -> null;
         };
     }
 }

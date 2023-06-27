@@ -6,3 +6,9 @@ public class Maps {
         pathCalculatorStrategy.findPath(source, destination);
     }
 }
+
+// Sorter -> sort(int[] array)
+// BubbleSorter implement Sorter
+// MergeSorter implement Sorter
+// SorterFactory -> objects
+// Main -> use get foctory get sorter object, then use sorter object to sort
