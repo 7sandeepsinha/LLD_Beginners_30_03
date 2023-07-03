@@ -1,5 +1,6 @@
 package collectionAndGenerics.collections;
 
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -24,6 +25,12 @@ public class SetDemo {
         linkedSet.add(300);
         linkedSet.add(400);
         System.out.println("LinkedSet" + linkedSet);
+    }
 
+    public void printSet(){
+        Iterator<Integer> iterator = set.iterator();
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
     }
 }

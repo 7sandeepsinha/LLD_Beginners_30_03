@@ -2,17 +2,19 @@ Amazon - publisher -> contains list of subscriber objects
 
 10 subscribers -> 10 objects
 Amazon -> 3 objects
+a1obj -> list
+a2obj -> list
+a3obj -> list
 
 1 object -> 3 subscribers in the list
 2 object -> 4 subscribers in the list
 3 object -> 3 subscribers in the list
 
-Amazon{ list}
+Amazon{list}
 
-a1obj -> list
-a2obj -> list
-a3obj -> list
 
 
 register
 deregister
+
+-- break : 8:26 AM
