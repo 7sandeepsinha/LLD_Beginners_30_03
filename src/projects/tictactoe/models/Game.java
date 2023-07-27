@@ -4,6 +4,7 @@ import projects.tictactoe.exception.DuplicateSymbolException;
 import projects.tictactoe.exception.InvalidBotCountException;
 import projects.tictactoe.exception.InvalidDimensionException;
 import projects.tictactoe.exception.InvalidNumberOfPlayersException;
+import projects.tictactoe.strategies.winningStrategy.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,7 +28,7 @@ public class Game {
         this.winningStrategies = winningStrategies;
     }
 
-    public static class Builder(){
+    public static class Builder{
         private List<Player> players;
         private List<WinningStrategy> winningStrategies;
         private int dimension;
@@ -76,7 +77,7 @@ public class Game {
 
         private void validateDimension(){
             if(dimension<3 || dimension>10){ // 3 to 10 is the allowed range
-                throw new InvalidDimensionException("Dimension can either be more than 2 or less than 11")
+                throw new InvalidDimensionException("Dimension can either be more than 2 or less than 11");
             }
         }
 
@@ -93,7 +94,7 @@ public class Game {
             }
 
             if(set.size() != players.size()){
-                throw new DuplicateSymbolException("Every player should have unique symbol")
+                throw new DuplicateSymbolException("Every player should have unique symbol");
             }
         }
 
