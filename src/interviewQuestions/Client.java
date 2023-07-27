@@ -1,6 +1,8 @@
 package interviewQuestions;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Client implements Serializable {
 
@@ -46,6 +48,14 @@ public class Client implements Serializable {
         Adder adder = ( (a,b) -> a+b);
         int result = adder.add(10,6);
         System.out.println(result);
+
+        ArrayList<String> fruits = new ArrayList<>();
+        fruits.add("Apple");
+        fruits.add("Banana");
+        fruits.add("Mango");
+        fruits.add("Kiwi");
+        fruits.add("Litchi");
+        Collections.sort(fruits, (String a, String b) -> a.compareTo(b));
+        System.out.println(fruits);
     }
 }
-// break -> 8:25 AM
