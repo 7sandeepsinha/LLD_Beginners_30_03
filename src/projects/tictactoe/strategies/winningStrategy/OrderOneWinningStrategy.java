@@ -1,6 +1,7 @@
 package projects.tictactoe.strategies.winningStrategy;
 
 import projects.tictactoe.models.Board;
+import projects.tictactoe.models.Move;
 import projects.tictactoe.models.Player;
 
 import java.util.ArrayList;
@@ -50,11 +51,95 @@ public class OrderOneWinningStrategy implements WinningStrategy{
      */
 
     @Override
-    public Player checkWinner(Board board) {
+    public Player checkWinner(Board board, Move lastMove) {
+        Player lastMovePlayer = lastMove.getPlayer();
+        char symbol = lastMove.getPlayer().getSymbol().getSymbolChar();
+        int row = lastMove.getCell().getRow();
+        int col = lastMove.getCell().getCol();
+
+        if(checkForRows(row, col, symbol, lastMove) != null)
+            return lastMovePlayer;
+        else if(checkForColumnWins(row, col, symbol, lastMove) != null)
+            return lastMovePlayer;
+        else if(checkForDiagonalWins(row, col, symbol, lastMove) != null)
+            return lastMovePlayer;
+        else if(checkForCorner(row, col, symbol, lastMove) != null)
+            return lastMovePlayer;
+        else
+            return null;
+    }
+
+    private Player checkForRows(int row, int col, char symbol, Move lastMove){
+        if(!rowSymbolCount.get(row).containsKey(symbol)){
+            rowSymbolCount.get(row).put(symbol, 0);
+        }
+        rowSymbolCount.get(row).put(
+                symbol, // key
+                rowSymbolCount.get(row).get(symbol) + 1 // value
+        );
+        //winning by same symbol across a row
+        if(rowSymbolCount.get(row).get(symbol) == dimension)
+            return lastMove.getPlayer();
         return null;
     }
 
+    private Player checkForColumnWins(int row, int col, char symbol, Move lastMove){
+        if(!colSymbolCount.get(col).containsKey(symbol)){
+            colSymbolCount.get(col).put(symbol, 0);
+        }
+        colSymbolCount.get(col).put(
+                symbol, // key
+                colSymbolCount.get(col).get(symbol) + 1 // value
+        );
+        //winning by same symbol across a column
+        if(colSymbolCount.get(col).get(symbol) == dimension)
+            return lastMove.getPlayer();
+        return null;
+    }
+
+    private Player checkForDiagonalWins(int row, int col, char symbol, Move lastMove){
+        if(isCellTopLeftDiagonal(row, col)){
+            if(!topLeftDiagonalSymbolCount.containsKey(symbol)){
+                topLeftDiagonalSymbolCount.put(symbol, 0);
+            }
+            topLeftDiagonalSymbolCount.put(
+                    symbol, // key
+                    topLeftDiagonalSymbolCount.get(symbol) + 1 // value
+            );
+            //winning by same symbol across a row
+            if(topLeftDiagonalSymbolCount.get(symbol) == dimension)
+                return lastMove.getPlayer();
+        }
+
+        if(isCellBottomLeftDiagonal(row, col)){
+            if(!bottomLeftDiagonalSymbolCount.containsKey(symbol)){
+                bottomLeftDiagonalSymbolCount.put(symbol, 0);
+            }
+            bottomLeftDiagonalSymbolCount.put(
+                    symbol, // key
+                    bottomLeftDiagonalSymbolCount.get(symbol) + 1 // value
+            );
+            //winning by same symbol across a row
+            if(bottomLeftDiagonalSymbolCount.get(symbol) == dimension)
+                return lastMove.getPlayer();
+        }
+        return null;
+    }
+
+    private Player checkForCorner(int row, int col, char symbol, Move lastMove){
+        if(isCornerCell(row, col)){
+            if(!cornerSymbolCount.containsKey(symbol)){
+                cornerSymbolCount.put(symbol, 0);
+            }
+            cornerSymbolCount.put(
+                    symbol, // key
+                    cornerSymbolCount.get(symbol) + 1 // value
+            );
+            //winning by same symbol across a row
+            if(cornerSymbolCount.get(symbol) == dimension)
+                return lastMove.getPlayer();
+        }
+        return null;
+    }
 
 }
-
-// break -> 8:20 AM

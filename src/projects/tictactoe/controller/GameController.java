@@ -2,19 +2,20 @@ package projects.tictactoe.controller;
 
 import projects.tictactoe.models.Game;
 import projects.tictactoe.models.GameState;
+import projects.tictactoe.models.Move;
 import projects.tictactoe.models.Player;
-import projects.tictactoe.strategies.winningStrategy.WinningStrategy;
+import projects.tictactoe.strategies.winningStrategy.OrderOneWinningStrategy;
 
 import java.util.List;
 
 public class GameController {
 
-    public Game createGame(int dimension, List<Player> players, List<WinningStrategy> winningStrategies){
+    public Game createGame(int dimension, List<Player> players){
         try{
             return Game.builder()
                     .setDimension(dimension)
                     .setPlayers(players)
-                    .setWinningStrategies(winningStrategies)
+                    .setWinningStrategies(List.of(new OrderOneWinningStrategy(dimension)))
                     .build();
         }catch (Exception e){
             System.out.println("Could not start the game, something went wrong");
@@ -33,7 +34,12 @@ public class GameController {
     public void executeMove(Game game){
         int nextPlayerIndex = game.getNextPlayerIndex();
         Player nextPlayerToPlay = game.getPlayers().get(nextPlayerIndex);
-        nextPlayerToPlay.makeMove(game.getBoard());
+        Move move = nextPlayerToPlay.makeMove(game.getBoard());
+        updateGameMoves(game, move);
+    }
+
+    private void updateGameMoves(Game game, Move move){
+        game.getMoves().add(move);
     }
 
     public String getWinner(Game game){
