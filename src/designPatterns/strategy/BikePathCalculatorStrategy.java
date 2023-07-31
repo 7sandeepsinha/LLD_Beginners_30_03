@@ -1,7 +1,5 @@
 package designPatterns.strategy;
 
-import inheritanceAndPolymorphism.B;
-
 public class BikePathCalculatorStrategy implements PathCalculatorStrategy {
 
     private static BikePathCalculatorStrategy instance;

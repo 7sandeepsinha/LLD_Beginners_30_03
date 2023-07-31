@@ -28,14 +28,42 @@ public class Game {
         this.winningStrategies = winningStrategies;
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public List<Move> getMoves() {
+        return moves;
+    }
+
+    public Player getWinner() {
+        return winner;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public int getNextPlayerIndex() {
+        return nextPlayerIndex;
+    }
+
+    public List<WinningStrategy> getWinningStrategies() {
+        return winningStrategies;
+    }
+
+    public static Builder builder(){
+        return new Builder();
+    }
+
     public static class Builder{
         private List<Player> players;
         private List<WinningStrategy> winningStrategies;
         private int dimension;
-
-        public static Builder builder(){
-            return new Builder();
-        }
 
         private Builder() {
             this.players = new ArrayList<Player>();
@@ -43,16 +71,19 @@ public class Game {
             this.dimension = 0;
         }
 
-        public void setPlayers(List<Player> players) {
+        public Builder setPlayers(List<Player> players) {
             this.players = players;
+            return this;
         }
 
-        public void setWinningStrategies(List<WinningStrategy> winningStrategies) {
+        public Builder setWinningStrategies(List<WinningStrategy> winningStrategies) {
             this.winningStrategies = winningStrategies;
+            return this;
         }
 
-        public void setDimension(int dimension) {
+        public Builder setDimension(int dimension) {
             this.dimension = dimension;
+            return this;
         }
 
         public void addPlayer(Player player){
@@ -105,7 +136,7 @@ public class Game {
             validateUniqueSymbolForAllPlayers();
         }
 
-        private Game build(){
+        public Game build(){
             validate();
             return new Game(players, new Board(dimension), winningStrategies);
         }
