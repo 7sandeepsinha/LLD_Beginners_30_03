@@ -2,6 +2,9 @@ package projects.tictactoe;
 
 import projects.tictactoe.controller.GameController;
 import projects.tictactoe.models.*;
+import projects.tictactoe.strategies.botPlayingStrategy.BotPlayingStrategy;
+import projects.tictactoe.strategies.botPlayingStrategy.BotPlayingStrategyFactory;
+import projects.tictactoe.strategies.botPlayingStrategy.RandomBotPlayingStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,17 +46,24 @@ public class TicTacToeGame {
             System.out.println("What is the character symbol of the BOT");
             String characterSymbol = sc.next();
 
-            players.add(new Player(new Symbol(characterSymbol.charAt(0)), playerName, PlayerType.BOT ));
+            players.add(new Bot(new Symbol(characterSymbol.charAt(0)), playerName, BotDifficultyLevel.EASY, BotPlayingStrategyFactory.getBotPlayingStrategyForDifficultyLevel(BotDifficultyLevel.EASY)));
         }
 
         Game game = gameController.createGame(dimension, players);
+        int playerIndex = 0;
 
         while(game.getGameState().equals(GameState.IN_PROGRESS)){
             System.out.println("Current board status");
             gameController.displayBoard(game);
-            // TODO : undo
-            gameController.executeMove(game);
-            // TODO : write logic for giving each player option to play
+            playerIndex++;
+            playerIndex = playerIndex % players.size();
+            Move movePlayed = gameController.executeMove(game, players.get(playerIndex));
+            Player winner = gameController.checkWinner(game, movePlayed);
+            if(winner != null){
+                gameController.displayBoard(game);
+                System.out.println("Winner is : " + winner.getName());
+                break;
+            }
 
         }
 

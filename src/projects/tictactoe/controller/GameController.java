@@ -4,7 +4,8 @@ import projects.tictactoe.models.Game;
 import projects.tictactoe.models.GameState;
 import projects.tictactoe.models.Move;
 import projects.tictactoe.models.Player;
-import projects.tictactoe.strategies.winningStrategy.OrderOneWinningStrategy;
+import projects.tictactoe.strategies.winningStrategy.WinningStrategy;
+import projects.tictactoe.strategies.winningStrategy.WinningStrategyFactory;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class GameController {
             return Game.builder()
                     .setDimension(dimension)
                     .setPlayers(players)
-                    .setWinningStrategies(List.of(new OrderOneWinningStrategy(dimension)))
+                    .setWinningStrategies(List.of(WinningStrategyFactory.getWinningStrategy(dimension)))
                     .build();
         }catch (Exception e){
             System.out.println("Could not start the game, something went wrong");
@@ -31,15 +32,23 @@ public class GameController {
         return game.getGameState();
     }
 
-    public void executeMove(Game game){
-        int nextPlayerIndex = game.getNextPlayerIndex();
-        Player nextPlayerToPlay = game.getPlayers().get(nextPlayerIndex);
-        Move move = nextPlayerToPlay.makeMove(game.getBoard());
+    public Move executeMove(Game game, Player player){
+        Move move = player.makeMove(game.getBoard());
         updateGameMoves(game, move);
+        return move;
     }
 
     private void updateGameMoves(Game game, Move move){
         game.getMoves().add(move);
+    }
+
+    public Player checkWinner(Game game, Move recentMove){
+        for(WinningStrategy winningStrategy : game.getWinningStrategies()){
+            Player player = winningStrategy.checkWinner(game.getBoard(), recentMove);
+            if(player != null)
+                return player;
+        }
+        return null;
     }
 
     public String getWinner(Game game){

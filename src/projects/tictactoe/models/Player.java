@@ -29,6 +29,7 @@ public class Player {
 //        Cell cell = new Cell(row, col, this);
 //        Move move = new Move(cell, this);
         board.getBoard().get(row).get(col).setPlayer(this);
+        board.getBoard().get(row).get(col).setCellState(CellState.FILLED);
         return new Move(new Cell(row,col,this), this);
     }
 

@@ -16,7 +16,6 @@ public class Game {
     private List<Move> moves;
     private Player winner;
     private GameState gameState;
-    private int nextPlayerIndex;
     private List<WinningStrategy> winningStrategies;
 
     private Game(List<Player> players, Board board, List<WinningStrategy> winningStrategies) {
@@ -24,7 +23,6 @@ public class Game {
         this.board = board;
         this.moves = new ArrayList<Move>();
         this.gameState = GameState.IN_PROGRESS;
-        this.nextPlayerIndex = 0;
         this.winningStrategies = winningStrategies;
     }
 
@@ -46,10 +44,6 @@ public class Game {
 
     public GameState getGameState() {
         return gameState;
-    }
-
-    public int getNextPlayerIndex() {
-        return nextPlayerIndex;
     }
 
     public List<WinningStrategy> getWinningStrategies() {
