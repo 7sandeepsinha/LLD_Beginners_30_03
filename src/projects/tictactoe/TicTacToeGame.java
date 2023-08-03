@@ -61,7 +61,7 @@ public class TicTacToeGame {
 
         Game game = gameController.createGame(dimension, players);
         int playerIndex = 0;
-
+        //TODO : optimise the while loop and handle exception gracefully
         while(game.getGameState().equals(GameState.IN_PROGRESS)){
             System.out.println("Current board status");
             gameController.displayBoard(game);
