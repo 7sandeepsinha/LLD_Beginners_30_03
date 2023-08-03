@@ -19,9 +19,9 @@ public class Player {
     }
 
     public Move makeMove(Board board){
-        System.out.println("Please enter the row for the move");
+        System.out.println(this.getName() + ", Please enter the row for the move" );
         int row = scanner.nextInt();
-        System.out.println("Please enter the column for the move");
+        System.out.println(this.getName() + ", Please enter the column for the move");
         int col = scanner.nextInt();
 
         //TODO : validate the move and throw exception or msg

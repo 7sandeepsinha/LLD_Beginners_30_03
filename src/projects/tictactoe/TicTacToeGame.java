@@ -2,11 +2,10 @@ package projects.tictactoe;
 
 import projects.tictactoe.controller.GameController;
 import projects.tictactoe.models.*;
-import projects.tictactoe.strategies.botPlayingStrategy.BotPlayingStrategy;
 import projects.tictactoe.strategies.botPlayingStrategy.BotPlayingStrategyFactory;
-import projects.tictactoe.strategies.botPlayingStrategy.RandomBotPlayingStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,13 +40,24 @@ public class TicTacToeGame {
 
         if(isBotPresent.equals("Y")){
             System.out.println("What is the name of the BOT");
-            String playerName = sc.next();
+            String botName = sc.next();
 
             System.out.println("What is the character symbol of the BOT");
             String characterSymbol = sc.next();
 
-            players.add(new Bot(new Symbol(characterSymbol.charAt(0)), playerName, BotDifficultyLevel.EASY, BotPlayingStrategyFactory.getBotPlayingStrategyForDifficultyLevel(BotDifficultyLevel.EASY)));
+            //TODO: take user input for bot difficulty level and create the object accordingly
+            BotDifficultyLevel difficultyLevel = BotDifficultyLevel.EASY;
+
+            Bot bot = new Bot(new Symbol(characterSymbol.charAt(0)),
+                    botName,
+                    difficultyLevel,
+                    BotPlayingStrategyFactory.getBotPlayingStrategyForDifficultyLevel(BotDifficultyLevel.EASY));
+
+            players.add(bot);
         }
+        // randomizes the players in the list
+        Collections.shuffle(players);
+
 
         Game game = gameController.createGame(dimension, players);
         int playerIndex = 0;
@@ -64,16 +74,10 @@ public class TicTacToeGame {
                 System.out.println("Winner is : " + winner.getName());
                 break;
             }
-
         }
-
-        System.out.println("Game has ended, result was : ");
-        if(gameController.getGameState(game).equals(GameState.DRAW)){
-            System.out.println("GAME WAS A DRAW");
-        } else {
-            System.out.println("Game is won by : " + gameController.getWinner(game));
-        }
-
-
     }
 }
+
+// 4 players -> 0 1 2 3 0 1 2 3 0 1 2 3
+// playerIndex++ -> playerIndex % (n-1)
+// 4 -> 0 % 4 -> 0, 1%4 -> 1, 2%4 -> 2, 3%4 -> 3, 4%4 -> 0 5%4 ->1 6%4->2
