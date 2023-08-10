@@ -2,7 +2,8 @@ package projects.parkingLot.models;
 
 public class Gate extends BaseModel {
     private int gateNumber;
-    private Operator operator;
+    //private Operator operator;
+    private String operator;
     private Status status;
     private GateType gateType;
     private int floorNumber;
@@ -15,11 +16,11 @@ public class Gate extends BaseModel {
         this.gateNumber = gateNumber;
     }
 
-    public Operator getOperator() {
+    public String getOperator() {
         return operator;
     }
 
-    public void setOperator(Operator operator) {
+    public void setOperator(String operator) {
         this.operator = operator;
     }
 

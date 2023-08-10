@@ -40,3 +40,5 @@ public class Bill extends BaseModel {
         this.gate = gate;
     }
 }
+
+// review -> 8:36 AM 
