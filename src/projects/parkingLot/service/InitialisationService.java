@@ -15,6 +15,7 @@ public class InitialisationService {
     private ParkingSpotRepository parkingSpotRepository;
     private ParkingLotRepository parkingLotRepository;
 
+
     public InitialisationService() {
         this.gateRepository = new GateRepository();
         this.parkingFloorRepository = new ParkingFloorRepository();
@@ -22,6 +23,10 @@ public class InitialisationService {
         this.parkingLotRepository = new ParkingLotRepository();
     }
 
+    /***
+     *  This will create a parking lot with 10 floors, and each floor having 10 spots
+     *  @return ParkingLot object
+     */
     public ParkingLot initialise(){
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setId(1);
@@ -77,14 +82,6 @@ public class InitialisationService {
         parkingLot.setParkingFloors(parkingFloors);
         parkingLotRepository.put(parkingLot);
         return parkingLot;
-        /*
-            for(10){
-                ParkingFloor
-                for(10){
-                    10 ParkingSpot - per floor
-                }
-            }
-         */
     }
 }
 
