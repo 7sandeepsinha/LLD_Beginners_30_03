@@ -28,7 +28,8 @@ public class TicketController {
                     issueTicketRequestDTO.getVehicleColor(),
                     issueTicketRequestDTO.getVehicleMake(),
                     issueTicketRequestDTO.getGateId());
-
+            issueTicketResponseDTO.setResponseStatus(ResponseStatus.SUCCESS);
+            issueTicketResponseDTO.setTicket(ticket);
         } catch (Exception e ){
             issueTicketResponseDTO.setResponseStatus(ResponseStatus.FAILURE);
             issueTicketResponseDTO.setFailureReason(e.getMessage());
@@ -37,3 +38,5 @@ public class TicketController {
         return issueTicketResponseDTO;
     }
 }
+
+// break -> 8:34 AM : 8 mins
