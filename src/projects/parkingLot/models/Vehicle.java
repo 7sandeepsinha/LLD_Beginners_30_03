@@ -47,4 +47,14 @@ public class Vehicle extends BaseModel{
     public void setMake(String make) {
         this.make = make;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "number='" + number + '\'' +
+                ", color='" + color + '\'' +
+                ", make='" + make + '\'' +
+                ", vehicleType=" + vehicleType +
+                '}';
+    }
 }
